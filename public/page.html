@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DDReplay</title>
+    <link rel="stylesheet" href="./page.css">
+    <link rel="stylesheet" href="./animate.min.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <script src="./qrcode.min.js"></script>
+    <script defer src="./page.js"></script>
+</head>
+<body>
+    <div id="main">
+        <div id="title">Click the button below to save the last 3 minutes</div>
+        <button id="saveBtn">Save Instant Replay!</button>
+    </div>
+    <div id="blur"></div>
+    <div id="modal">
+        <label for="vidName">Video Title</label><br>
+        <input type="text" name="vidName" id="vidName" cols="25"><br><br>
+        <label for="vidDesc">Video Description</label><br>
+        <textarea name="vidDesc" id="vidDesc" cols="25" rows="4"></textarea><br><br>
+        <button type="reset" id="cancelBtn">Cancel</button>
+        <button type="submit" id="uploadBtn">Upload to YouTube</button>
+    </div>
+    <div id="mostRecent" class="animate__animated">
+        <div id="qrcode"></div>
+        <div id="mostRecentText">Most Recently<br>Uploaded Clip</div>
+        <img id="mostRecentThumb" src="" alt="">
+        <div id="mostRecentTitleGroup"><span><img id="ytIco" src="https://www.youtube.com/favicon.ico"></span> <a href="" target="_blank" id="mostRecentTitle"></a></div>
+    </div>
+</body>
+</html>
