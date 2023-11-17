@@ -10,8 +10,8 @@ require('dotenv').config()
 const TAGS = 'DDR,DanceDanceRevolution,dance,revolution,rhythm,game,a3,a20,plus,a20plus,ace,babylon,galaxy'.split(',')
 
 try {
-    obs.connect(process.env.IP, process.env.AUTH)
-    .then(console.log)
+    obs.connect(process.env.OBS_WS_IP, process.env.OBS_WS_PASS)
+    .then(d=>console.log(`Connected to obs-websocket v${d.obsWebSocketVersion}`))
     .catch(console.error)
     .finally(()=>{
         app.use(express.static('public'));
@@ -23,7 +23,6 @@ try {
         app.get('/save', (req,res) => {
             obs.once('ReplayBufferSaved', val => {
                 const vidPath = val.savedReplayPath
-                // const vidPath = '/Users/erichnguyen/Movies/OBS/Replay_2023-11-16_12-20-07.mp4'
                 console.log('saved,', vidPath)
                 return res.json({
                     success: true,
@@ -49,12 +48,10 @@ try {
                     msg: e
                 })
             })
-            // setTimeout(()=>{res.json({url:'https://youtu.be/Wq_hA5Q5EXQ'})}, 1000)
         })
-    
-        app.listen(process.env.API_PORT, () => console.log('Server is listening on port', +process.env.API_PORT));    
+
+        app.listen(process.env.HOSTING_PORT, () => console.log('Server is running!', 'http://localhost:'+process.env.HOSTING_PORT));    
     })
-    // console.log('OBS client connected!')
 } catch (error) {
     console.error('Failed to connect', error.code, error.message);
 }
