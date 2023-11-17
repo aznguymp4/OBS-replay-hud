@@ -9,13 +9,15 @@ const {uploadVideo} = require('./upload.js')
 require('dotenv').config()
 const TAGS = 'DDR,DanceDanceRevolution,dance,revolution,rhythm,game,a3,a20,plus,a20plus,ace,babylon,galaxy'.split(',')
 
+require('child_process').exec((process.platform == 'darwin'? 'open': process.platform == 'win32'? 'start': 'xdg-open') + ' http://localhost:'+process.env.HOSTING_PORT);
+
 try {
     obs.connect(process.env.OBS_WS_IP, process.env.OBS_WS_PASS)
     .then(d=>console.log(`Connected to obs-websocket v${d.obsWebSocketVersion}`))
     .catch(console.error)
     .finally(()=>{
-        app.use(express.static('public'));
-        app.use(express.json());
+        app.use(express.static('public'))
+        app.use(express.json())
         app.get('/', (req,res) => {
             res.contentType('html')
             return res.send(homePage)
@@ -50,8 +52,9 @@ try {
             })
         })
 
-        app.listen(process.env.HOSTING_PORT, () => console.log('Server is running!', 'http://localhost:'+process.env.HOSTING_PORT));    
+        obs.call('StartReplayBuffer')
+        app.listen(process.env.HOSTING_PORT, () => console.log('Server is running!', 'http://localhost:'+process.env.HOSTING_PORT))
     })
 } catch (error) {
-    console.error('Failed to connect', error.code, error.message);
+    console.error('Failed to connect', error.code, error.message)
 }

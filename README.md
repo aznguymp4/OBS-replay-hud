@@ -1,4 +1,5 @@
 # OBS-replay-hud
+Save OBS replay and quickly send to YouTube with the click of ~~one~~ two buttons!
 
 `.gitignore`d files:
 - `.env`
@@ -24,4 +25,9 @@ HOSTING_PORT=5730
 // --- To download this file, do the following:
 // 1. Go to https://console.cloud.google.com/apis/credentials
 // 2. Create Credentials > OAuth client ID > Application type: Desktop app
+```
+
+- `client_oauth_token.json`
+```md
+*This file gets auto generated when the save button is used the first time and user logs into YouTube Channel*
 ```
