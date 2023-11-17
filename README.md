@@ -2,7 +2,7 @@
 
 `.gitignore`d files:
 - `.env`
-```c
+```env
 OBS_WS_IP='ws://localhost:4455'
 OBS_WS_PASS='PASSWORD_HERE'
 HOSTING_PORT=5730
